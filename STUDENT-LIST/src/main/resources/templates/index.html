@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #c9a2deff, #80c3f3);
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            padding: 6px 12px;
+            color: white;
+            background-color: #ff9900ff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .btn-danger {
+            background-color: #dc35b5ff;
+        }
+        .container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Student List</h2>
+    <a href="/showNewStudentForm"><button class="btn">Add New Student</button></a>
+    <br><br>
+    <table>
+        <tr>
+            <th>Roll No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.rollNo}"></td>
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.dateOfBirth}"></td>
+            <td th:text="${student.address}"></td>
+            <td>
+                <a th:href="@{'/showFormForUpdate/' + ${student.rollNo}}"><button class="btn">Edit</button></a>
+                <a th:href="@{'/deleteStudent/' + ${student.rollNo}}"><button class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
